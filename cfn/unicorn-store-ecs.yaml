@@ -1,0 +1,202 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: This template will launch an ECS service with lb for .Net Modernization Workshop.
+
+Parameters:
+  VPCstack:
+    Type: String
+    Description: VPC stack to import values from
+    Default: ModernizationVPC
+
+  RDSsecrets:
+    Type: String
+    Description: RDS information such as username and password arn to secret manager
+    Default: UnicornStoreServices
+    
+  DesiredCount:
+    Type: Number
+    Default: 1    
+
+Resources:
+  UnicornStoreCloudwatchLogGroup:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: UnicornStore
+      RetentionInDays: 30      
+
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: UnicornStoreCluster
+
+  TaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - Action: "sts:AssumeRole"
+            Effect: "Allow"
+            Principal: 
+              Service: "ecs-tasks.amazonaws.com"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+        - "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+      Policies:
+        -
+          PolicyName: RetrieveUnicornSecret
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+             - Effect: Allow
+               Action:
+               - secretsmanager:GetSecretValue
+               Resource:
+                 - Fn::ImportValue: !Sub "${RDSsecrets}:DBSecret" 
+                 - Fn::ImportValue: !Sub "${RDSsecrets}:AdminPasswordSecret" 
+                 - Fn::ImportValue: !Sub "${RDSsecrets}:AdminUsernameSecret"          
+      RoleName: "UnicornStoreExecutionRole"
+      
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: "modernization-unicorn"
+      Memory: "2 gb"
+      Cpu: "1 vcpu"
+      NetworkMode: "awsvpc"
+      ExecutionRoleArn: !Ref TaskExecutionRole
+      RequiresCompatibilities: 
+        - "FARGATE"
+      ContainerDefinitions:
+        - Name: modernization-devsecops-workshop_unicornstore
+          Image: 
+            !Sub '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/modernization-devsecops-workshop:latest'
+          Cpu: 512
+          Memory: 1024
+          PortMappings:
+            - ContainerPort: 80
+          Environment:
+            - Name: ASPNETCORE_ENVIRONMENT
+              Value: Production
+          Secrets: 
+            - Name: UNICORNSTORE_DBSECRET
+              ValueFrom: 
+                Fn::ImportValue: !Sub "${RDSsecrets}:DBSecret"
+            - Name: DefaultAdminUsername
+              ValueFrom: 
+                Fn::ImportValue: !Sub "${RDSsecrets}:AdminUsernameSecret"
+            - Name: DefaultAdminPassword
+              ValueFrom: 
+                Fn::ImportValue: !Sub "${RDSsecrets}:AdminPasswordSecret"
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref AWS::Region
+              awslogs-group: UnicornStore
+              awslogs-stream-prefix: "web"
+  
+  TaskSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: UnicornStoreTaskSecurityGroup
+      GroupDescription: Security group the the Unicornstore Fargate Task
+      VpcId: 
+        Fn::ImportValue: !Sub "${VPCstack}:VPCId"
+  
+  TaskSecurityGroupIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    Properties:
+      GroupId: !Ref TaskSecurityGroup
+      IpProtocol: tcp
+      FromPort: 80
+      ToPort: 80
+      SourceSecurityGroupId: !Ref LBSecurityGroup     
+  
+  FargateService:
+    Type: AWS::ECS::Service
+    DependsOn: LoadBalancerListener
+    Properties:
+      Cluster: !Ref ECSCluster
+      DesiredCount: !Ref DesiredCount
+      TaskDefinition: !Ref TaskDefinition
+      LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref TaskSecurityGroup
+          Subnets: 
+            - Fn::ImportValue: !Sub "${VPCstack}:PublicSubnet1"
+            - Fn::ImportValue: !Sub "${VPCstack}:PublicSubnet2"
+      LoadBalancers:
+        - ContainerName: modernization-devsecops-workshop_unicornstore
+          ContainerPort: 80
+          TargetGroupArn: !Ref TargetGroup
+      ServiceName: Unicorn-FargateService
+      
+  LBSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: UnicornStoreLbSecurityGroup
+      GroupDescription: Security group the the Unicornstore Application Load Balancer
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          IpProtocol: "TCP"
+          FromPort: 80
+          ToPort: 80
+      VpcId: 
+        Fn::ImportValue: !Sub "${VPCstack}:VPCId"
+
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: UnicornStore-LB
+      Scheme: internet-facing
+      SecurityGroups:
+        - !Ref LBSecurityGroup
+      Subnets:
+        - Fn::ImportValue: !Sub "${VPCstack}:PublicSubnet1"
+        - Fn::ImportValue: !Sub "${VPCstack}:PublicSubnet2"
+      Tags:
+        - Key: Name
+          Value: UnicornStore-LB
+      Type: application
+      IpAddressType: ipv4
+
+  LoadBalancerListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    DependsOn: LoadBalancer
+    Properties:
+      Name: ecs-UnicornStore-Service
+      VpcId: 
+        Fn::ImportValue: !Sub "${VPCstack}:VPCId"
+      Port: 80
+      Protocol: HTTP
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /health
+      HealthCheckProtocol: HTTP
+      TargetType: ip
+          
+Outputs:
+  Service:
+    Value: !Ref FargateService
+  
+  TargetGroup:
+    Value: !Ref TargetGroup
+
+  ServiceUrl:
+    Description: URL of the load balancer for the sample service.
+    Value: !Sub http://${LoadBalancer.DNSName}
+    
+      
+  
