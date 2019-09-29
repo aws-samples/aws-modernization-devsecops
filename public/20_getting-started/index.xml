@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting Started on AWS DevSecOps Modernization Workshop</title>
+    <link>http://localhost/20_getting-started.html</link>
+    <description>Recent content in Getting Started on AWS DevSecOps Modernization Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://localhost/20_getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating your environment</title>
+      <link>http://localhost/20_getting-started/1_getting_started.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/20_getting-started/1_getting_started.html</guid>
+      <description>You are responsible for the cost of the AWS services used while running this workshop in your AWS account.  In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. We will begin with AWS Cloud9. Technically, you should be able to complete many of the steps in these modules if you have a properly configured terminal.</description>
+    </item>
+    
+  </channel>
+</rss>

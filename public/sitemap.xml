@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://localhost/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/50_conclusion/1_after_thoughts.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/10_prerequisites/1_aws_account.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/20_getting-started/1_getting_started.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/30_unicorn_store_ci_cd/1_base_services.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing/1_introduction.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing/5_test_pipeline.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/50_conclusion/10_cleanup.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/10_prerequisites.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/30_unicorn_store_ci_cd/10_push_to_repo.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing/10_secrets_scanning.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/30_unicorn_store_ci_cd/20_ecs_fargate.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing/20_docker_scanning.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/20_getting-started.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/30_unicorn_store_ci_cd/30_pipeline.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing/30_local_testing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/30_unicorn_store_ci_cd.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/40_security_testing.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/50_conclusion.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost/categories.html</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost/tags.html</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

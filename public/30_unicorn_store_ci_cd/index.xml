@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unicorn Store CI/CD on AWS DevSecOps Modernization Workshop</title>
+    <link>http://localhost/30_unicorn_store_ci_cd.html</link>
+    <description>Recent content in Unicorn Store CI/CD on AWS DevSecOps Modernization Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://localhost/30_unicorn_store_ci_cd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Setup Basic Services</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/1_base_services.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/1_base_services.html</guid>
+      <description>Introduction Up until now, we have been going through various steps to setup our environment. Installing tools and other necessary steps to make sure we progress through the modules without any issues. Now, we are ready to begin deploying the infrastructure that will support our Unicorn Store application.
+Basic Services CloudFormation Stack We are going to setup some basic services such as an Amazon RDS Database, secrets in AWS Secrets Manager, AWS CodeCommit, and Amazon ECR services.</description>
+    </item>
+    
+    <item>
+      <title>Push to Repo</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/10_push_to_repo.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/10_push_to_repo.html</guid>
+      <description>Push to AWS CodeCommit We should now be ready to push our application to the AWS CodeCommit repo and the Amazon Elastic Container Repository
+The following sets a new origin for the application repo to CodeCommit unicorn-store, configures a credential helper needed for CodeCommit, and pushes the source code to the repo. This step is necessary for an automated pipeline as CodeBuild will build the Unicorn Store application directly from this repo.</description>
+    </item>
+    
+    <item>
+      <title>Deploy ECS Fargate Service</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/20_ecs_fargate.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/20_ecs_fargate.html</guid>
+      <description>Deploy Fargate Service In the following set of commands we are going to use CloudFormation to deploy services that will allow our Unicorn Store application to service traffic from the Internet. The CloudFormation template sets up an ECS Cluster, a Service, Task Definition, Task, and Application Load Balancer.
+cd ~/environment/modernization-devsecops-workshop/cfn aws cloudformation create-stack --stack-name UnicornECS --template-body file://unicorn-store-ecs.yaml --capabilities CAPABILITY_NAMED_IAM until [[ `aws cloudformation describe-stacks --stack-name &amp;#34;UnicornECS&amp;#34; --query &amp;#34;Stacks[0].[StackStatus]&amp;#34; --output text` == &amp;#34;CREATE_COMPLETE&amp;#34; ]]; do echo &amp;#34;The stack is NOT in a state of CREATE_COMPLETE at `date`&amp;#34;; sleep 30; done &amp;amp;&amp;amp; echo &amp;#34;The Stack is built at `date` - Please proceed&amp;#34; This step takes approximately 3 minutes and if successfully, you should see the message as below.</description>
+    </item>
+    
+    <item>
+      <title>Deploy CI/CD Pipeline</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/30_pipeline.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/30_pipeline.html</guid>
+      <description>What is CI/CD? Continuous integration (CI) and continuous delivery (CD) embodies a culture, set of operating principles, and collection of practices that enable application development teams to deliver features and functionality more frequently and reliably.
+Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories as frequently as possible. Because most modern applications require developing code in different platforms and tools, the team needs a mechanism to integrate and validate its changes.</description>
+    </item>
+    
+  </channel>
+</rss>

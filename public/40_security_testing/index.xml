@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security Testing on AWS DevSecOps Modernization Workshop</title>
+    <link>http://localhost/40_security_testing.html</link>
+    <description>Recent content in Security Testing on AWS DevSecOps Modernization Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://localhost/40_security_testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Testing Introduction</title>
+      <link>http://localhost/40_security_testing/1_introduction.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/1_introduction.html</guid>
+      <description>In this module, we&amp;rsquo;re going to instrument security testing within the CI/CD process. Modernized applications look to shift security left. By enabling security testing sooner in the development process developers can receive feedback while the software change is still top of mind.
+In traditional software development processes security testing is not performed until one of the final checks before release to production. With this scenario, feedback to the developer is often delayed weeks or even months from the time code was commited.</description>
+    </item>
+    
+    <item>
+      <title>Test Pipeline</title>
+      <link>http://localhost/40_security_testing/5_test_pipeline.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/5_test_pipeline.html</guid>
+      <description>AWS CodePipeline Workflow A pipeline models our workflow from end to end. Within our pipeline we can have stages, and you can think of stages as groups of actions. An action or a plug-in is what acts upon the current revision that is moving through your pipeline. This is where the actual work happens in your pipeline. Stages can then be connected by transitions and in our console we represent these by an arrow between each stage.</description>
+    </item>
+    
+    <item>
+      <title>Secrets Scanning</title>
+      <link>http://localhost/40_security_testing/10_secrets_scanning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/10_secrets_scanning.html</guid>
+      <description>In this stage you are going to test for secrets accidentally saved in your repository. For this stage you&amp;rsquo;ll be leveraging trufflehog, a popular open source project for finding secrets accidentally committed in repositories. It essentially searches through git repositories for secrets, digging deep into commit history and branches. It identifies secrets by running entropy checks as well as high signal regex checks.
+To get started, lets open up buildspec.yml in the left hand pane of Cloud9.</description>
+    </item>
+    
+    <item>
+      <title>Docker Scanning</title>
+      <link>http://localhost/40_security_testing/20_docker_scanning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/20_docker_scanning.html</guid>
+      <description>This stage you&amp;rsquo;ll add linting of Dockerfiles to help you build best practice Docker images. For linting you&amp;rsquo;ll be leveraging Hadolint, which is a popular open source project for linting Dockerfiles and validating inline bash. The linter parses the Dockerfile into an AST and performs rules on top of the AST. The rules aren&amp;rsquo;t all security specific but they have good coverage across best practices.
+To cause a build failure we are going to edit the Dockerfile and add a line that violates a hadolint check.</description>
+    </item>
+    
+    <item>
+      <title>Local Testing</title>
+      <link>http://localhost/40_security_testing/30_local_testing.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/30_local_testing.html</guid>
+      <description>Each of the different tests that we have instrumented in our pipeline so far can also be run on the developers local machine. It is not uncommon in pratice to run tests on both the local development machine and within the pipeline. The pipeline test is meant as a mechanism to fail a build stage that has not passed testing, while the local development environment test is meant to provide immediate feedback and diagnostic details to the developer.</description>
+    </item>
+    
+  </channel>
+</rss>

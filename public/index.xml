@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS Modernization DevSecOps Workshop on AWS DevSecOps Modernization Workshop</title>
+    <link>http://localhost/</link>
+    <description>Recent content in AWS Modernization DevSecOps Workshop on AWS DevSecOps Modernization Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://localhost/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Congratulations</title>
+      <link>http://localhost/50_conclusion/1_after_thoughts.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/50_conclusion/1_after_thoughts.html</guid>
+      <description>Well Done Congratulations. You have completed this DevSecOps workshop on shifting security testing left.
+Recap on what you have learned  Learned how to deploy CloudFormation stacks Learned about a modern CI/CD pipeline Learned how to test in AWS CodeBuild Learned about a couple of open source tools for security testing Learned why it is important to test as early as possible in the pipeline  Final Thoughts Due to the time and scope of the workshop there are several things that can and should be instrumented to improve security testing within the CI/CD pipeline.</description>
+    </item>
+    
+    <item>
+      <title>Create an AWS account</title>
+      <link>http://localhost/10_prerequisites/1_aws_account.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/10_prerequisites/1_aws_account.html</guid>
+      <description>Your account must have the ability to create new IAM roles and scope other IAM permissions.  If you already have an AWS account, and have IAM Administrator access, you can skip this page.   If you don&amp;rsquo;t already have an AWS account with Administrator access: create one now
+ Once you have an AWS account, ensure you are following the remaining workshop steps as an IAM user with administrator access to the AWS account: Create a new IAM user to use for the workshop</description>
+    </item>
+    
+    <item>
+      <title>Creating your environment</title>
+      <link>http://localhost/20_getting-started/1_getting_started.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/20_getting-started/1_getting_started.html</guid>
+      <description>You are responsible for the cost of the AWS services used while running this workshop in your AWS account.  In order for you to succeed in this workshop, you will need to run through a few steps in order to properly setup and configure your environment. These steps will include provisioning some services, installing some tools, and downloading some dependencies as well. We will begin with AWS Cloud9. Technically, you should be able to complete many of the steps in these modules if you have a properly configured terminal.</description>
+    </item>
+    
+    <item>
+      <title>Setup Basic Services</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/1_base_services.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/1_base_services.html</guid>
+      <description>Introduction Up until now, we have been going through various steps to setup our environment. Installing tools and other necessary steps to make sure we progress through the modules without any issues. Now, we are ready to begin deploying the infrastructure that will support our Unicorn Store application.
+Basic Services CloudFormation Stack We are going to setup some basic services such as an Amazon RDS Database, secrets in AWS Secrets Manager, AWS CodeCommit, and Amazon ECR services.</description>
+    </item>
+    
+    <item>
+      <title>Testing Introduction</title>
+      <link>http://localhost/40_security_testing/1_introduction.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/1_introduction.html</guid>
+      <description>In this module, we&amp;rsquo;re going to instrument security testing within the CI/CD process. Modernized applications look to shift security left. By enabling security testing sooner in the development process developers can receive feedback while the software change is still top of mind.
+In traditional software development processes security testing is not performed until one of the final checks before release to production. With this scenario, feedback to the developer is often delayed weeks or even months from the time code was commited.</description>
+    </item>
+    
+    <item>
+      <title>Test Pipeline</title>
+      <link>http://localhost/40_security_testing/5_test_pipeline.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/5_test_pipeline.html</guid>
+      <description>AWS CodePipeline Workflow A pipeline models our workflow from end to end. Within our pipeline we can have stages, and you can think of stages as groups of actions. An action or a plug-in is what acts upon the current revision that is moving through your pipeline. This is where the actual work happens in your pipeline. Stages can then be connected by transitions and in our console we represent these by an arrow between each stage.</description>
+    </item>
+    
+    <item>
+      <title>Cleanup</title>
+      <link>http://localhost/50_conclusion/10_cleanup.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/50_conclusion/10_cleanup.html</guid>
+      <description>Cleanup In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the workshop a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forget about it, and then accrue charges.
+You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.</description>
+    </item>
+    
+    <item>
+      <title>Push to Repo</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/10_push_to_repo.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/10_push_to_repo.html</guid>
+      <description>Push to AWS CodeCommit We should now be ready to push our application to the AWS CodeCommit repo and the Amazon Elastic Container Repository
+The following sets a new origin for the application repo to CodeCommit unicorn-store, configures a credential helper needed for CodeCommit, and pushes the source code to the repo. This step is necessary for an automated pipeline as CodeBuild will build the Unicorn Store application directly from this repo.</description>
+    </item>
+    
+    <item>
+      <title>Secrets Scanning</title>
+      <link>http://localhost/40_security_testing/10_secrets_scanning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/10_secrets_scanning.html</guid>
+      <description>In this stage you are going to test for secrets accidentally saved in your repository. For this stage you&amp;rsquo;ll be leveraging trufflehog, a popular open source project for finding secrets accidentally committed in repositories. It essentially searches through git repositories for secrets, digging deep into commit history and branches. It identifies secrets by running entropy checks as well as high signal regex checks.
+To get started, lets open up buildspec.yml in the left hand pane of Cloud9.</description>
+    </item>
+    
+    <item>
+      <title>Deploy ECS Fargate Service</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/20_ecs_fargate.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/20_ecs_fargate.html</guid>
+      <description>Deploy Fargate Service In the following set of commands we are going to use CloudFormation to deploy services that will allow our Unicorn Store application to service traffic from the Internet. The CloudFormation template sets up an ECS Cluster, a Service, Task Definition, Task, and Application Load Balancer.
+cd ~/environment/modernization-devsecops-workshop/cfn aws cloudformation create-stack --stack-name UnicornECS --template-body file://unicorn-store-ecs.yaml --capabilities CAPABILITY_NAMED_IAM until [[ `aws cloudformation describe-stacks --stack-name &amp;#34;UnicornECS&amp;#34; --query &amp;#34;Stacks[0].[StackStatus]&amp;#34; --output text` == &amp;#34;CREATE_COMPLETE&amp;#34; ]]; do echo &amp;#34;The stack is NOT in a state of CREATE_COMPLETE at `date`&amp;#34;; sleep 30; done &amp;amp;&amp;amp; echo &amp;#34;The Stack is built at `date` - Please proceed&amp;#34; This step takes approximately 3 minutes and if successfully, you should see the message as below.</description>
+    </item>
+    
+    <item>
+      <title>Docker Scanning</title>
+      <link>http://localhost/40_security_testing/20_docker_scanning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/20_docker_scanning.html</guid>
+      <description>This stage you&amp;rsquo;ll add linting of Dockerfiles to help you build best practice Docker images. For linting you&amp;rsquo;ll be leveraging Hadolint, which is a popular open source project for linting Dockerfiles and validating inline bash. The linter parses the Dockerfile into an AST and performs rules on top of the AST. The rules aren&amp;rsquo;t all security specific but they have good coverage across best practices.
+To cause a build failure we are going to edit the Dockerfile and add a line that violates a hadolint check.</description>
+    </item>
+    
+    <item>
+      <title>Deploy CI/CD Pipeline</title>
+      <link>http://localhost/30_unicorn_store_ci_cd/30_pipeline.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/30_unicorn_store_ci_cd/30_pipeline.html</guid>
+      <description>What is CI/CD? Continuous integration (CI) and continuous delivery (CD) embodies a culture, set of operating principles, and collection of practices that enable application development teams to deliver features and functionality more frequently and reliably.
+Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories as frequently as possible. Because most modern applications require developing code in different platforms and tools, the team needs a mechanism to integrate and validate its changes.</description>
+    </item>
+    
+    <item>
+      <title>Local Testing</title>
+      <link>http://localhost/40_security_testing/30_local_testing.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost/40_security_testing/30_local_testing.html</guid>
+      <description>Each of the different tests that we have instrumented in our pipeline so far can also be run on the developers local machine. It is not uncommon in pratice to run tests on both the local development machine and within the pipeline. The pipeline test is meant as a mechanism to fail a build stage that has not passed testing, while the local development environment test is meant to provide immediate feedback and diagnostic details to the developer.</description>
+    </item>
+    
+  </channel>
+</rss>
