@@ -28,5 +28,6 @@ phases:
     commands:
       - echo Build Website
       - ./hugo -D
-   
+      - echo Deploy Copy Website to S3 Bucket
+      - aws s3 cp public/ s3://devsecops.modernize.awsworkshop.io/ --recursive
       
