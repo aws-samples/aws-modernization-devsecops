@@ -11,7 +11,7 @@ phases:
     commands:
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
-      - echo "### Initializing Git ###"
+      - echo Initializing Git Repo
       - git init
       - git remote add origin https://github.com/jamesbland123/modernization-devsecops-workshop.git
       - git fetch
