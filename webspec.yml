@@ -13,7 +13,7 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - echo Initializing Git Repo
       - git init
-      - git remote add origin https://github.com/jamesbland123/modernization-devsecops-workshop.git
+      - git remote add origin https://github.com/aws-samples/aws-modernization-devsecops.git
       - git fetch
       - git checkout -f "$CODEBUILD_RESOLVED_SOURCE_VERSION"
       - git submodule init
