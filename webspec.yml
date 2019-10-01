@@ -13,7 +13,7 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - echo Initializing Git Repo
       - git init
-      - git remote add origin https://github.com/aws-samples/aws-modernization-devsecops.git
+      - git remote add origin $FULL_REPO_URL
       - git fetch
       - git checkout -f "$CODEBUILD_RESOLVED_SOURCE_VERSION"
       - git submodule init
@@ -29,5 +29,5 @@ phases:
       - echo Build Website
       - ./hugo -D
       - echo Deploy Copy Website to S3 Bucket
-      - aws s3 cp public/ s3://devsecops.modernize.awsworkshop.io/ --recursive
+      - aws s3 cp public/ s3://${WEB_SITE_BUCKET}/ --recursive
       

@@ -1,6 +1,9 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: This template will launch the Modernization Workshop CI/CD Pipeline.
 
+# It should only be necessary to update the parameters
+# run this stack as below but sub for {WORKSHOP NAME} with the workshop/company name
+# aws cloudformation create-stack --stack-name {WORKSHOP NAME}-Website-Pipeline --template-body file://pipeline.yaml --capabilities CAPABILITY_NAMED_IAM
 Parameters:
   ProjectName:
     Type: String
@@ -14,6 +17,10 @@ Parameters:
     Type: String
     Description: repo name
     Default: aws-modernization-devsecops
+  FullRepoURL:
+    Type: String
+    Description: The full url to the repo
+    Default: https://github.com/aws-samples/aws-modernization-devsecops.git  
   GitHubOwner:
     Type: String
     Description: GitHub owner name
@@ -106,6 +113,10 @@ Resources:
         EnvironmentVariables:
           - Name: AWS_DEFAULT_REGION
             Value: !Ref AWS::Region
+          - Name: FULL_REPO_URL
+            Value: !Ref FullRepoURL
+          - Name: WEB_SITE_BUCKET  
+            Value: !Ref WebsiteBucket  
         PrivilegedMode: true
       Name: !Join ['', [!Ref 'ProjectName', '-Workshop-website']]
       ServiceRole: !Ref CodeBuildServiceRole
