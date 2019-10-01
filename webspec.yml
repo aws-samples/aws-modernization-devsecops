@@ -9,9 +9,15 @@ phases:
       ruby: 2.6
   pre_build:
     commands:
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo "### Initializing Git ###"
+      - git init
+      - git remote add origin https://github.com/jamesbland123/modernization-devsecops-workshop.git
+      - git fetch
+      - git checkout -f "$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - git submodule init
+      - git submodule update --recursive  
 
   build:
     commands:

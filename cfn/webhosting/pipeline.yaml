@@ -55,7 +55,6 @@ Resources:
                   - s3:PutObject
                   - s3:GetObjectVersion
                   - s3:ListBucket
-      RoleName: !Join ['', [!Ref 'ProjectName', '-WorkshopBuild-role']]
 
   CodePipelineServiceRole:
     Type: AWS::IAM::Role
