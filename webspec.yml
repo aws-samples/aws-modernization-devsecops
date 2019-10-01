@@ -27,6 +27,6 @@ phases:
   build:
     commands:
       - echo Build Website
-      - hugo -D
+      - ./hugo -D
    
       
