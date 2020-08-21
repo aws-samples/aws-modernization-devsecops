@@ -6,31 +6,3 @@ In this workshop, you will learn how to add security testing to a CI/CD pipeline
 
 For the step by step instructions for completing this workshop please go to https://devsecops.modernize.awsworkshop.io
 
-## Generating the workshop static site pages with Hugo
-
-### Install Hugo
-
-macOS: `brew install hugo`
-
-Windows: `choco install hugo -confirm`
-
-Visit https://gohugo.io/getting-started/installing/ for detailed instructions.
-
-
-### Clone this repo
-
-`git clone https://github.com/jamesbland123/modernization-devsecops-workshop.git`
-
-### Install node packages
-
-`cd modernization-devsecops-workshop`
-
-`npm install`
-
-### Run Hugo locally
-
-`npm run server`
-
-### View site locally
-
-Visit http://localhost:1313/ to see the site.
